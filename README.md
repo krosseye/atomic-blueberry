@@ -22,6 +22,7 @@ Atomic Blueberry is my personal [Fedora Kinoite](https://fedoraproject.org/atomi
 - [xone](https://github.com/dlundqvist/xone) and [xpadneo](https://github.com/atar-axis/xpadneo): Xbox controller drivers (USB/wireless dongle and Bluetooth)
 - [steam-devices](https://github.com/ValveSoftware/steam-devices): udev rules for Steam controllers, Steam Deck and VR headsets
 - [v4l2loopback](https://github.com/umlaeute/v4l2loopback): needed for the OBS virtual camera
+- [VSCodium](https://vscodium.com/) (installed as an RPM, so its terminal and dev containers work with the host)
 - gh, git-lfs, fastfetch, Papirus icon theme
 - FiraCode and Symbols Nerd Fonts
 
@@ -31,7 +32,7 @@ These are installed from [Flathub](https://flathub.org/) on first boot.
 
 - **General:** Firefox, Chromium, Okular, Kiview, ONLYOFFICE, Kdenlive, Celluloid, Bottles, OBS Studio (with the Vulkan game capture plugin)
 - **Gaming:** Steam, Heroic Games Launcher, ProtonUp-Qt, Protontricks, plus the gamescope and vkBasalt Vulkan layers
-- **Development:** VSCodium, BoxBuddy (for Distrobox, which ships with the base image), GNOME Boxes (for virtual machines)
+- **Development:** BoxBuddy (for Distrobox, which ships with the base image), GNOME Boxes (for virtual machines)
 
 ## Installation Options
 

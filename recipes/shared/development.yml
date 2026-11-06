@@ -3,17 +3,20 @@
 
 modules:
   - type: dnf
+    repos:
+      files:
+        - vscodium.repo
     install:
       packages:
         - git
         - gh
         - git-lfs
+        - codium
 
   - type: default-flatpaks
     configurations:
       - scope: system
         install:
-          - com.vscodium.codium
           - io.github.dvlv.boxbuddyrs
           - org.gnome.Boxes
 
