@@ -1,7 +1,6 @@
 name: Build for NVIDIA
 on:
   schedule:
-    # build twice a week (20 minutes after last ublue images start building)
     - cron: "00 17 * * 2,4" # build at 17:00 UTC every Tuesday & Thursday
   push:
     branches:
@@ -17,10 +16,9 @@ on:
       - "**.md"
       - ".editorconfig"
       - "resources/**"
-  workflow_dispatch: # allow manually triggering builds
+  workflow_dispatch:
 concurrency:
-  # only run one build at a time
-  group: ${{ github.ref || github.run_id }}
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
   cancel-in-progress: true
 jobs:
   bluebuild:
@@ -31,7 +29,6 @@ jobs:
       packages: write
       id-token: write
     steps:
-      # the build is fully handled by the reusable github action
       - name: Build Custom Image NVIDIA
         uses: blue-build/github-action@v1.13
         with:
