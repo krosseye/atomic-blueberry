@@ -6,48 +6,32 @@
 &nbsp;
 [![Build for NVIDIA](https://github.com/Krosseye/atomic-blueberry/actions/workflows/build-nvidia.yml/badge.svg)](https://github.com/Krosseye/atomic-blueberry/actions/workflows/build-nvidia.yml)
 
-</div>  
+</div>
 
-## Introduction
+## About
 
-> [!WARNING]  
->Atomic Blueberry is in an experimental phase, **everything** is subject to change. **It is not intended for everday use.**
+> [!WARNING]
+> Atomic Blueberry is experimental and anything may change. It is not intended for everyday use.
 
-**Atomic Blueberry** is an experimental [OCI](https://en.wikipedia.org/wiki/Open_Container_Initiative) image designed for high-performance computing environments, including gaming PCs and professional workstations. It leverages the capabilities of [Universal Blue](https://universal-blue.org/) and [Fedora Atomic](https://fedoraproject.org/atomic-desktops/) technologies with the [BlueBuild](https://blue-build.org/) framework to provide a cutting-edge, [containerized operating system](https://fedoraproject.org/wiki/Changes/OstreeNativeContainerStable) experience.
+Atomic Blueberry is my personal [Fedora Kinoite](https://fedoraproject.org/atomic-desktops/kinoite/) (KDE) image, built on [Universal Blue](https://universal-blue.org/) with [BlueBuild](https://blue-build.org/). It's stock Fedora with the drivers and apps I use for gaming and development preinstalled, so a fresh install doesn't need setting up by hand. Others are welcome to use it.
 
-## Key Features
+## What's included
 
-- **Regular Updates**
-- **Optimized Performance**
-- **Extensive Software Support**
+### Drivers and system packages
 
-## Included Drivers and Utilities
+- [xone](https://github.com/dlundqvist/xone) and [xpadneo](https://github.com/atar-axis/xpadneo): Xbox controller drivers (USB/wireless dongle and Bluetooth)
+- [steam-devices](https://github.com/ValveSoftware/steam-devices): udev rules for Steam controllers, Steam Deck and VR headsets
+- [v4l2loopback](https://github.com/umlaeute/v4l2loopback): needed for the OBS virtual camera
+- gh, git-lfs, fastfetch, Papirus icon theme
+- FiraCode and Symbols Nerd Fonts
 
-- **[v4l2loopback](https://github.com/umlaeute/v4l2loopback):** For creating virtual video devices.
+### Flatpaks
 
-- **[xpadneo](https://github.com/atar-axis/xpadneo) & [xone](https://github.com/BoukeHaarsma23/xonedo/):** Advanced Xbox One controller support via Bluetooth and USB.
+These are installed from [Flathub](https://flathub.org/) on first boot.
 
-- **[steam-devices](https://github.com/ValveSoftware/steam-devices):** Udev rules for Steam hardware peripherals.
-
-## Pre-installed Applications
-
-### Productivity
-
-- **[OBS Studio](https://flathub.org/apps/com.obsproject.Studio):** Powerful tool for video capture, recording, and streaming.
-- **[ONLYOFFICE](https://flathub.org/apps/org.onlyoffice.desktopeditors):** Comprehensive suite for document creation and editing.
-- **[Kdenlive](https://flathub.org/apps/org.kde.kdenlive):** Video editing application with advanced editing features.
-- **[Bottles](https://flathub.org/apps/com.usebottles.bottles):** Run Windows software on Linux.
-
-### Development
-
-- **[VSCodium](https://flathub.org/apps/com.vscodium.codium):** Versatile code editor for multiple programming languages.
-- **[Distrobox](https://distrobox.it/) & [BoxBuddy](https://flathub.org/apps/io.github.dvlv.boxbuddyrs):** Enables running any Linux distribution within your terminal and provides a GUI for management.
-- **[Boxes](https://flathub.org/apps/org.gnome.Boxes):** Simplifies virtual machine setup and management.
-
-### Gaming
-
-- **[Steam](https://flathub.org/apps/com.valvesoftware.Steam) & [Heroic Games Launcher](https://flathub.org/apps/com.heroicgameslauncher.hgl):** Access to thousands of games with compatibility layer support for Windows titles.
-- **[ProtonUp-Qt](https://flathub.org/apps/net.davidotek.pupgui2) & [Protontricks](https://flathub.org/apps/com.github.Matoking.protontricks):** Additional tools for enhancing the gaming experience across various platforms.
+- **General:** Firefox, Chromium, Okular, Kiview, ONLYOFFICE, Kdenlive, Celluloid, Bottles, OBS Studio (with the Vulkan game capture plugin)
+- **Gaming:** Steam, Heroic Games Launcher, ProtonUp-Qt, Protontricks, plus the gamescope and vkBasalt Vulkan layers
+- **Development:** VSCodium, BoxBuddy (for Distrobox, which ships with the base image), GNOME Boxes (for virtual machines)
 
 ## Installation Options
 
@@ -55,9 +39,6 @@
 > AMD and Intel users should use `ghcr.io/krosseye/atomic-blueberry`, and Nvidia users should use `ghcr.io/krosseye/atomic-blueberry-nvidia`
 
 ### Rebase
-
-> [!WARNING]  
-> **[This is an experimental feature](https://www.fedoraproject.org/wiki/Changes/OstreeNativeContainerStable), try at your own discretion.**
 
 To rebase an existing atomic Fedora installation to the latest build of Atomic Blueberry:
 
@@ -75,12 +56,18 @@ rpm-ostree rebase ostree-image-signed:docker://ghcr.io/krosseye/atomic-blueberry
 systemctl reboot
 ```
 
+For NVIDIA, use `atomic-blueberry-nvidia` in both commands.
+
 ### ISO
 
 > [!IMPORTANT]  
 > **Pre-built ISOs are currently not available, this is planned for the future.**
 
-If built on Fedora Atomic, you can generate an offline ISO with the instructions available [here](https://blue-build.org/learn/universal-blue/#fresh-install-from-an-iso).
+If built on Fedora Atomic, you can generate an offline ISO with the [BlueBuild CLI](https://blue-build.org/how-to/generate-iso/):
+
+```bash
+sudo bluebuild generate-iso --iso-name atomic-blueberry.iso image ghcr.io/krosseye/atomic-blueberry
+```
 
 ## Verification
 
