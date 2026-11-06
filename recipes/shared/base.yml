@@ -2,6 +2,11 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/module-stage-list-v1.json
 
 modules:
+  - type: files
+    files:
+      - source: system
+        destination: /
+
   - type: akmods
     install:
       - v4l2loopback # OBS virtual camera

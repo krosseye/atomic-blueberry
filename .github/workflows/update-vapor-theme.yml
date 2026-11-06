@@ -1,0 +1,25 @@
+name: Update Vapor theme
+on:
+  schedule:
+    - cron: "00 12 * * 1" # 12:00 UTC every Monday
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: update
+        run: bash .github/scripts/update-vapor-theme.sh
+
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          branch: update-vapor-theme
+          commit-message: Update Vapor theme to ${{ steps.update.outputs.version }}
+          title: Update Vapor theme to ${{ steps.update.outputs.version }}
+          body: |
+            Theme files extracted from Valve's `steamdeck-kde-presets` ${{ steps.update.outputs.version }}.
+            Review the diff before merging; merging triggers the image builds.

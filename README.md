@@ -23,7 +23,7 @@ Atomic Blueberry is my personal [Fedora Kinoite](https://fedoraproject.org/atomi
 - [steam-devices](https://github.com/ValveSoftware/steam-devices): udev rules for Steam controllers, Steam Deck and VR headsets
 - [v4l2loopback](https://github.com/umlaeute/v4l2loopback): needed for the OBS virtual camera
 - [VSCodium](https://vscodium.com/) (installed as an RPM, so its terminal and dev containers work with the host)
-- gh, git-lfs, fastfetch, Papirus icon theme
+- gh, git-lfs, fastfetch, Papirus icon theme, Valve's Vapor theme
 - FiraCode and Symbols Nerd Fonts
 
 ### Flatpaks
