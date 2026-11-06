@@ -3,25 +3,22 @@
 
 modules:
   - type: akmods
-    base: main
     install:
       - xpadneo
       - xone
 
-  - type: rpm-ostree
+  - type: dnf
     install:
-      # System
-      - steam-devices
+      packages:
+        - steam-devices
 
   - type: default-flatpaks
-    notify: true # Send notification after install/uninstall is finished (true/false)
-    system:
-      # If no repo information is specified, Flathub will be used by default
-      install:
-        # Gaming
-        - com.valvesoftware.Steam
-        - com.valvesoftware.Steam.CompatibilityTool.Proton-GE
-        - org.freedesktop.Platform.VulkanLayer.vkBasalt
-        - net.davidotek.pupgui2
-        - com.heroicgameslauncher.hgl
-        - com.github.Matoking.protontricks
+    configurations:
+      - scope: system
+        install:
+          - com.valvesoftware.Steam
+          - org.freedesktop.Platform.VulkanLayer.gamescope
+          - org.freedesktop.Platform.VulkanLayer.vkBasalt
+          - net.davidotek.pupgui2
+          - com.heroicgameslauncher.hgl
+          - com.github.Matoking.protontricks

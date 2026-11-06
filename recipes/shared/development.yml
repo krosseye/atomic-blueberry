@@ -2,24 +2,20 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/module-stage-list-v1.json
 
 modules:
-  - type: rpm-ostree
-    # repos:
+  - type: dnf
     install:
-      # Development
-      - distrobox
-      - git
-      - gh
-      - git-lfs
+      packages:
+        - git
+        - gh
+        - git-lfs
 
   - type: default-flatpaks
-    notify: true # Send notification after install/uninstall is finished (true/false)
-    system:
-      # If no repo information is specified, Flathub will be used by default
-      install:
-        # Software
-        - com.visualstudio.code
-        - io.github.dvlv.boxbuddyrs
-        - flathub org.gnome.Boxes
+    configurations:
+      - scope: system
+        install:
+          - com.vscodium.codium
+          - io.github.dvlv.boxbuddyrs
+          - org.gnome.Boxes
 
   - type: fonts
     fonts:

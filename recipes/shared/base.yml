@@ -1,61 +1,37 @@
 ---
 # yaml-language-server: $schema=https://schema.blue-build.org/module-stage-list-v1.json
 
-# module configuration, executed in order
-# you can include multiple instances of the same module
 modules:
   - type: akmods
-    base: main
     install:
-      - v4l2loopback
-      - evdi
+      - v4l2loopback # OBS virtual camera
 
-  - type: rpm-ostree
-    # repos:
+  - type: dnf
     install:
-      # System
-      - python3-tkinter
-      - freetype
-      - ibus-typing-booster
-      - mesa-libGLU
-      - libadwaita
-      - fastfetch
+      packages:
+        - fastfetch
+        - papirus-icon-theme
     remove:
-      - firefox
-      - firefox-langpacks # also remove firefox dependency
+      packages:
+        - firefox
+        - firefox-langpacks
 
   - type: default-flatpaks
-    notify: true # Send notification after install/uninstall is finished (true/false)
-    system:
-      # If no repo information is specified, Flathub will be used by default
-      install:
-        # Software
-        - org.mozilla.firefox
-        - org.kde.okular
-        - org.onlyoffice.desktopeditors
-        - io.github.nyre221.kiview
-        - org.chromium.Chromium
-        - org.chromium.Chromium.Codecs
-        - com.usebottles.bottles
-        - org.kde.kdenlive
-        - io.github.celluloid_player.Celluloid
-
-        # OBS
-        - com.obsproject.Studio
-        - org.freedesktop.Platform.VulkanLayer.OBSVkCapture
-        - com.obsproject.Studio.Plugin.OBSVkCapture
-
-        # - org.gnome.Loupe
-        # - one.ablaze.floorp//lightning # This is an example of flatpak which has multiple branches in selection (flatpak//branch).
-      # Flatpak runtimes are not supported (like org.winehq.Wine//stable-23.08),
-      # only normal flatpak applications are (like Floorp Lightning web browser in this example).
-      # Installing different branches of the same Flatpak is not supported.
-      # remove:
-      # - org.gnome.eog
+    configurations:
+      - scope: system
+        install:
+          - org.mozilla.firefox
+          - org.kde.okular
+          - org.onlyoffice.desktopeditors
+          - io.github.nyre221.kiview
+          - org.chromium.Chromium
+          - org.chromium.Chromium.Codecs
+          - com.usebottles.bottles
+          - org.kde.kdenlive
+          - io.github.celluloid_player.Celluloid
+          - com.obsproject.Studio
+          - org.freedesktop.Platform.VulkanLayer.OBSVkCapture
+          - com.obsproject.Studio.Plugin.OBSVkCapture
 
   - from-file: ./shared/gaming.yml
   - from-file: ./shared/development.yml
-
-  - type: script
-    snippets:
-      - "wget -qO- https://git.io/papirus-icon-theme-install | sh" # download Papirus icon theme

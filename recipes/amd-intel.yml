@@ -1,17 +1,10 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 name: atomic-blueberry
 base-image: ghcr.io/ublue-os/kinoite-main
 description: An image optimized for both battlestations and workstations.
 image-version: latest
 
-# module configuration, executed in order
-# you can include multiple instances of the same module
 modules:
   - from-file: ./shared/base.yml
-  - type: default-flatpaks
-    notify: true # Send notification after install/uninstall is finished (true/false)
-    system:
-      # If no repo information is specified, Flathub will be used by default
-      install:
-        - org.freedesktop.Platform.VulkanLayer.gamescope
-
-  - type: signing # this sets up the proper policy & signing files for signed images to work fully
+  - type: signing

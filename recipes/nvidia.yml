@@ -1,3 +1,5 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 name: atomic-blueberry-nvidia
 base-image: ghcr.io/ublue-os/kinoite-nvidia
 description: An image optimized for both battlestations and workstations, with Nvidia drivers built in.
@@ -5,4 +7,4 @@ image-version: latest
 
 modules:
   - from-file: ./shared/base.yml
-  - type: signing # this sets up the proper policy & signing files for signed images to work fully
+  - type: signing

@@ -25,13 +25,9 @@
 
 - **[v4l2loopback](https://github.com/umlaeute/v4l2loopback):** For creating virtual video devices.
 
-- **[evdi](https://github.com/DisplayLink/evdi):** Essential for DisplayLink functionality.
-
 - **[xpadneo](https://github.com/atar-axis/xpadneo) & [xone](https://github.com/BoukeHaarsma23/xonedo/):** Advanced Xbox One controller support via Bluetooth and USB.
 
 - **[steam-devices](https://github.com/ValveSoftware/steam-devices):** Udev rules for Steam hardware peripherals.
-
-- **[ibus-typing-booster](https://mike-fabian.github.io/ibus-typing-booster/):** Enhances typing efficiency with intelligent predictions.
 
 ## Pre-installed Applications
 
@@ -44,7 +40,7 @@
 
 ### Development
 
-- **[Visual Studio Code](https://flathub.org/apps/com.visualstudio.code):** Versatile code editor for multiple programming languages.
+- **[VSCodium](https://flathub.org/apps/com.vscodium.codium):** Versatile code editor for multiple programming languages.
 - **[Distrobox](https://distrobox.it/) & [BoxBuddy](https://flathub.org/apps/io.github.dvlv.boxbuddyrs):** Enables running any Linux distribution within your terminal and provides a GUI for management.
 - **[Boxes](https://flathub.org/apps/org.gnome.Boxes):** Simplifies virtual machine setup and management.
 
