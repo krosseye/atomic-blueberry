@@ -30,7 +30,7 @@ Atomic Blueberry is my personal [Fedora Kinoite](https://fedoraproject.org/atomi
 
 These are installed from [Flathub](https://flathub.org/) on first boot.
 
-- **General:** Firefox, Chromium, Okular, Kiview, ONLYOFFICE, Kdenlive, Celluloid, Bottles, OBS Studio (with the Vulkan game capture plugin)
+- **General:** Firefox, Chromium, Okular, Kiview, ONLYOFFICE, Kdenlive, Haruna, Bottles, OBS Studio (with the Vulkan game capture plugin)
 - **Gaming:** Steam, Heroic Games Launcher, ProtonUp-Qt, Protontricks, plus the gamescope and vkBasalt Vulkan layers
 - **Development:** BoxBuddy (for Distrobox, which ships with the base image), GNOME Boxes (for virtual machines)
 

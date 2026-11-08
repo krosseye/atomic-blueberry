@@ -33,7 +33,7 @@ modules:
           - org.chromium.Chromium.Codecs
           - com.usebottles.bottles
           - org.kde.kdenlive
-          - io.github.celluloid_player.Celluloid
+          - org.kde.haruna
           - com.obsproject.Studio
           - org.freedesktop.Platform.VulkanLayer.OBSVkCapture
           - com.obsproject.Studio.Plugin.OBSVkCapture
