@@ -3,7 +3,7 @@
 name: atomic-blueberry
 base-image: ghcr.io/ublue-os/kinoite-main
 description: An image optimized for both battlestations and workstations.
-image-version: latest
+image-version: 44
 
 modules:
   - from-file: ./shared/base.yml
