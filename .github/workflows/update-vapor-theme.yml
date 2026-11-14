@@ -1,7 +1,7 @@
 name: Update Vapor theme
 on:
   schedule:
-    - cron: "00 12 * * 1" # 12:00 UTC every Monday
+    - cron: "13 12 * * 1" # 12:13 UTC every Monday
   workflow_dispatch:
 permissions:
   contents: write
