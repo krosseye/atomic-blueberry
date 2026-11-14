@@ -7,6 +7,10 @@ modules:
       - source: system
         destination: /
 
+  - type: script
+    scripts:
+      - branding.sh
+
   - type: akmods
     install:
       - v4l2loopback # OBS virtual camera
