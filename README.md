@@ -2,7 +2,7 @@
 
 <img src="./resources/banner.png" alt="Atomic Blueberry"/>
 
-[![Build images](https://github.com/Krosseye/atomic-blueberry/actions/workflows/build.yml/badge.svg)](https://github.com/Krosseye/atomic-blueberry/actions/workflows/build.yml)
+[![Build images](https://github.com/Krosseye/atomic-blueberry/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/Krosseye/atomic-blueberry/actions/workflows/build.yml?query=branch%3Amain)
 
 </div>
 
