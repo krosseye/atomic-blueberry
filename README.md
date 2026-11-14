@@ -2,9 +2,7 @@
 
 <img src="./resources/banner.png" alt="Atomic Blueberry"/>
 
-[![Build for AMD/Intel](https://github.com/Krosseye/atomic-blueberry/actions/workflows/build-amd-intel.yml/badge.svg)](https://github.com/Krosseye/atomic-blueberry/actions/workflows/build-amd-intel.yml)
-&nbsp;
-[![Build for NVIDIA](https://github.com/Krosseye/atomic-blueberry/actions/workflows/build-nvidia.yml/badge.svg)](https://github.com/Krosseye/atomic-blueberry/actions/workflows/build-nvidia.yml)
+[![Build images](https://github.com/Krosseye/atomic-blueberry/actions/workflows/build.yml/badge.svg)](https://github.com/Krosseye/atomic-blueberry/actions/workflows/build.yml)
 
 </div>
 
@@ -37,7 +35,8 @@ These are installed from [Flathub](https://flathub.org/) on first boot.
 ## Installation Options
 
 > [!IMPORTANT]  
-> AMD and Intel users should use `ghcr.io/krosseye/atomic-blueberry`, and Nvidia users should use `ghcr.io/krosseye/atomic-blueberry-nvidia`
+> AMD and Intel users should use `ghcr.io/krosseye/atomic-blueberry`, and Nvidia users should use `ghcr.io/krosseye/atomic-blueberry-nvidia`.
+> The Nvidia image uses Nvidia's open kernel driver, which needs a GTX 16 series, RTX 20 series or newer card. Older cards (GTX 10 series and earlier) are not supported.
 
 ### Rebase
 

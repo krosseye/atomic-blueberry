@@ -1,0 +1,86 @@
+name: Fedora version bump
+on:
+  schedule:
+    - cron: "43 6 * * 1" # 06:43 UTC every Monday
+  workflow_dispatch:
+permissions:
+  contents: read
+
+jobs:
+  detect:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      current: ${{ steps.check.outputs.current }}
+      next: ${{ steps.check.outputs.next }}
+    steps:
+      - uses: actions/checkout@v7
+      - id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          current=$(yq -r '.["image-version"]' recipes/amd-intel.yml)
+          nvidia=$(yq -r '.["image-version"]' recipes/nvidia.yml)
+          if [[ "$current" != "$nvidia" ]]; then
+            echo "::error::Recipes disagree: amd-intel=$current nvidia=$nvidia"; exit 1
+          fi
+          latest=$(skopeo list-tags docker://ghcr.io/ublue-os/kinoite-main \
+            | jq -r '.Tags[]' | grep -E '^[0-9]+$' | sort -n | tail -1)
+          echo "current=$current latest=$latest"
+          echo "current=$current" >> "$GITHUB_OUTPUT"
+          if (( latest > current )); then
+            next=$((current + 1))
+            # A bump PR already passed its test builds and is waiting for review: don't rebuild every week.
+            if [[ -n $(gh pr list --head "fedora-$next" --state open --json number --jq '.[].number') ]]; then
+              echo "Bump PR for Fedora $next is already open, nothing to do."
+            else
+              echo "next=$next" >> "$GITHUB_OUTPUT"
+            fi
+          fi
+
+  test-build:
+    needs: detect
+    if: needs.detect.outputs.next != ''
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+    strategy:
+      fail-fast: false
+      matrix:
+        recipe: [amd-intel.yml, nvidia.yml]
+    steps:
+      - uses: actions/checkout@v7
+      - name: Set image-version in both recipes
+        run: |
+          sed -i "s/^image-version: .*/image-version: ${{ needs.detect.outputs.next }}/" recipes/*.yml
+      - uses: blue-build/github-action@v1.13
+        with:
+          recipe: ${{ matrix.recipe }}
+          cosign_private_key: ${{ secrets.SIGNING_SECRET }}
+          registry_token: ${{ github.token }}
+          push: false
+          skip_checkout: true
+          maximize_build_space: true
+
+  open-pr:
+    needs: [detect, test-build]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v7
+      - name: Set image-version in both recipes
+        run: |
+          sed -i "s/^image-version: .*/image-version: ${{ needs.detect.outputs.next }}/" recipes/*.yml
+      - uses: peter-evans/create-pull-request@v8
+        with:
+          branch: fedora-${{ needs.detect.outputs.next }}
+          commit-message: Bump to Fedora ${{ needs.detect.outputs.next }}
+          title: Bump to Fedora ${{ needs.detect.outputs.next }}
+          body: |
+            Both `amd-intel` and `nvidia` built successfully on `kinoite-main:${{ needs.detect.outputs.next }}` (test build, not pushed).
+            Merging triggers the real image builds.

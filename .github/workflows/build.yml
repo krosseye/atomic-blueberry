@@ -1,7 +1,7 @@
-name: Build for AMD/Intel
+name: Build images
 on:
   schedule:
-    - cron: "00 17 * * 2,4" # build at 17:00 UTC every Tuesday & Thursday
+    - cron: "17 5 * * *" # 05:17 UTC every day
   push:
     branches:
       - main
@@ -22,19 +22,22 @@ concurrency:
   cancel-in-progress: true
 jobs:
   bluebuild:
-    name: Build Custom Image AMD-Intel
+    name: Build ${{ matrix.recipe }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
       id-token: write
+    strategy:
+      fail-fast: false
+      matrix:
+        recipe: [amd-intel.yml, nvidia.yml]
     steps:
-      - name: Build Custom Image AMD-Intel
+      - name: Build ${{ matrix.recipe }}
         uses: blue-build/github-action@v1.13
         with:
-          recipe: amd-intel.yml
+          recipe: ${{ matrix.recipe }}
           cosign_private_key: ${{ secrets.SIGNING_SECRET }}
           registry_token: ${{ github.token }}
           pr_event_number: ${{ github.event.number }}
-
           maximize_build_space: true
