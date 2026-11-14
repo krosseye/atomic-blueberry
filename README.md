@@ -15,22 +15,15 @@ Atomic Blueberry is my personal [Fedora Kinoite](https://fedoraproject.org/atomi
 
 ## What's included
 
-### Drivers and system packages
+The highlights are below. The full package list lives in [recipes/shared/](recipes/shared/).
 
-- [xone](https://github.com/dlundqvist/xone) and [xpadneo](https://github.com/atar-axis/xpadneo): Xbox controller drivers (USB/wireless dongle and Bluetooth)
-- [steam-devices](https://github.com/ValveSoftware/steam-devices): udev rules for Steam controllers, Steam Deck and VR headsets
-- [v4l2loopback](https://github.com/umlaeute/v4l2loopback): needed for the OBS virtual camera
-- [VSCodium](https://vscodium.com/) (installed as an RPM, so its terminal and dev containers work with the host)
-- gh, git-lfs, fastfetch, Papirus icon theme, Valve's Vapor theme
-- FiraCode and Symbols Nerd Fonts
+- **Gaming:** Steam, Heroic Games Launcher, MangoHud and gamescope, plus Xbox controller drivers ([xone](https://github.com/dlundqvist/xone) for the USB/wireless dongle, [xpadneo](https://github.com/atar-axis/xpadneo) for Bluetooth)
+- **Content creation:** OBS Studio with Vulkan game capture and a working virtual camera, Kdenlive
+- **Development:** [VSCodium](https://vscodium.com/) (installed as an RPM, so its terminal and dev containers work with the host), Distrobox via BoxBuddy, GNOME Boxes for virtual machines
+- **Desktop:** Valve's Vapor theme from the Steam Deck
+- **Nvidia image:** Nvidia's open driver built in (GTX 16 / RTX 20 series and newer)
 
-### Flatpaks
-
-These are installed from [Flathub](https://flathub.org/) on first boot.
-
-- **General:** Firefox, Chromium, Okular, Kiview, ONLYOFFICE, Kdenlive, Haruna, Bottles, OBS Studio (with the Vulkan game capture plugin)
-- **Gaming:** Steam, Heroic Games Launcher, ProtonUp-Qt, Protontricks, plus the gamescope and vkBasalt Vulkan layers
-- **Development:** BoxBuddy (for Distrobox, which ships with the base image), GNOME Boxes (for virtual machines)
+Apps are installed as Flatpaks from [Flathub](https://flathub.org/) on first boot. This includes Firefox, which replaces the Fedora RPM version.
 
 ## Installation Options
 
