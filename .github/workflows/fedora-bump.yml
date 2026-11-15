@@ -26,8 +26,10 @@ jobs:
           if [[ "$current" != "$nvidia" ]]; then
             echo "::error::Recipes disagree: amd-intel=$current nvidia=$nvidia"; exit 1
           fi
-          latest=$(skopeo list-tags docker://ghcr.io/ublue-os/kinoite-main \
-            | jq -r '.Tags[]' | grep -E '^[0-9]+$' | sort -n | tail -1)
+          # Follow the stable `latest` tag: numbered tags appear at Fedora beta, weeks before release.
+          latest=$(skopeo inspect docker://ghcr.io/ublue-os/kinoite-main:latest \
+            | jq -r '.Labels["org.opencontainers.image.version"]' | cut -d. -f1)
+          [[ $latest =~ ^[0-9]+$ ]] || { echo "::error::Could not read Fedora version of kinoite-main:latest"; exit 1; }
           echo "current=$current latest=$latest"
           echo "current=$current" >> "$GITHUB_OUTPUT"
           if (( latest > current )); then
